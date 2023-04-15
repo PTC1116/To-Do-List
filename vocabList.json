@@ -1,0 +1,78 @@
+[
+  {
+    "vocab": "replete",
+    "def": "completely filled or supplied with",
+    "num": 0
+  },
+  {
+    "vocab": "eminent",
+    "def": "of high reputation, outstanding",
+    "num": 1
+  },
+
+  {
+    "vocab": "steeped",
+    "def": "soaked, drenched, saturated",
+    "num": 2
+  },
+  {
+    "vocab": "voracious",
+    "def": "desiring or consuming great quantities",
+    "num": 3
+  },
+  {
+    "vocab": "indiscriminate",
+    "def": "choosing at random without careful selection",
+    "num": 4
+  },
+  {
+    "vocab": "prognosticate",
+    "def": "to predict or foretell a future event",
+    "num": 5
+  },
+  {
+    "vocab": "automatons",
+    "def": "a robot; a mechanical \"person\"",
+    "num": 6
+  },
+  {
+    "vocab": "abode",
+    "def": "a place where one lives",
+    "num": 7
+  },
+  {
+    "vocab": "abound",
+    "def": "to exist in great numbers",
+    "num": 8
+  },
+  {
+    "vocab": "technology",
+    "def": "branch of knowledge dealing with engineering, applied science, etc.",
+    "num": 9
+  },
+  {
+    "vocab": "compounded",
+    "def": "to increase or add to",
+    "num": 10
+  },
+  {
+    "vocab": "annals",
+    "def": "historical records",
+    "num": 11
+  },
+  {
+    "vocab": "paradoxes",
+    "def": "a statement that at first seems to be absurd or self-contradictory but which may in fact turn out to be true",
+    "num": 12
+  },
+  {
+    "vocab": "tinge",
+    "def": "a trace, smattering, or slight degree",
+    "num": 13
+  },
+  {
+    "vocab": "realm",
+    "def": "special field of something or someone; kingdom",
+    "num": 14
+  }
+]
