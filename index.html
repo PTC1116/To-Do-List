@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+      integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="start">
+        <h1>Vocabulary Quiz</h1>
+        <button class="pure-button pure-button-primary startBtn">START</button>
+      </div>
+      <div class="intro hide">
+        <h2>Introduction</h2>
+        <p>Choose the correct vocabulary word to complete the sentence</p>
+        <button class="pure-button pure-button-primary okBtn">OK</button>
+      </div>
+      <div class="content hide">
+        <h2 class="question">question1</h2>
+        <div class="choices">
+          <button class="pure-button pure-button-primary btn">answer1</button>
+          <button class="pure-button pure-button-primary btn">answer2</button>
+          <button class="pure-button pure-button-primary btn">answer3</button>
+          <button class="pure-button pure-button-primary btn">answer4</button>
+        </div>
+        <div class="next">
+          <button
+            class="pure-button pure-button-primary nextBtn visibilityHidden"
+          >
+            NEXT
+          </button>
+        </div>
+      </div>
+      <div class="result hide">
+        <h2 class="resultTitle">Result</h2>
+        <h2 class="resultSubtitle"></h2>
+        <hr />
+        <span class="resultDetails"></span>
+        <button class="pure-button pure-button-primary againBtn">
+          Try Again
+        </button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="all.js"></script>
+  </body>
+</html>
