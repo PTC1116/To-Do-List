@@ -92,6 +92,20 @@ function shuffleArray(array) {
   }
 }
 
+// Reset the buttons for the next question
+function reset() {
+  // Remove the question to avoid repetition
+  questionData.splice(randomQuestion, 1);
+  // Clear the choiceIndexs array
+  choiceIndexes = [];
+  btn.forEach((btn) => {
+    btn.classList.remove("green", "red");
+    btn.style.pointerEvents = "auto";
+  });
+  nextBtn.classList.add("visibilityHidden");
+  choices.classList.remove("disabled");
+}
+
 function recordResult() {
   let obj = {};
   obj.question = questionData[randomQuestion].question;
@@ -133,20 +147,6 @@ function printResult() {
   resultDetails.innerHTML = str;
 }
 
-// Reset the buttons for the next question
-function reset() {
-  // Remove the question to avoid repetition
-  questionData.splice(randomQuestion, 1);
-  // Clear the choiceIndexs array
-  choiceIndexes = [];
-  btn.forEach((btn) => {
-    btn.classList.remove("green", "red");
-    btn.style.pointerEvents = "auto";
-  });
-  nextBtn.classList.add("visibilityHidden");
-  choices.classList.remove("disabled");
-}
-
 function startNewRound() {
   resultData = [];
   questionCount = 0;
@@ -155,12 +155,6 @@ function startNewRound() {
 }
 
 fetchData();
-againBtn.addEventListener("click", (e) => {
-  wrap.classList.remove("heightAuto");
-  result.classList.add("hide");
-  start.classList.remove("hide");
-  fetchData();
-});
 
 // Event listener for start button
 startBtn.addEventListener("click", (e) => {
@@ -215,4 +209,11 @@ choices.addEventListener("click", (e) => {
     recordResult();
     nextBtn.classList.remove("visibilityHidden");
   }
+});
+
+againBtn.addEventListener("click", (e) => {
+  wrap.classList.remove("heightAuto");
+  result.classList.add("hide");
+  start.classList.remove("hide");
+  fetchData();
 });
