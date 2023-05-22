@@ -6,21 +6,21 @@ const btnAdd = document.querySelector(".btn-add");
 const txt = document.querySelector(".txt");
 const tab = document.querySelector(".tab");
 
-function renderData() {
+function renderData(data) {
   let str = "";
   let count = 0;
   //建頁面
   data.forEach(function (item, index) {
     if (item.check === "checked") {
-      str += `<li class = "listElements">
+      str += `<li class = "listElement">
           <label class="checkbox" for="">
             <input class = "check" type="checkbox" data-index="${index}" checked>
-            <span>${item.content}</span>
+            <span class="deleted">${item.content}</span>
           </label>
           <a href="#" class="material-symbols-outlined"> delete </a>
               </li><hr/>`;
     } else if (item.check === "unchecked") {
-      str += `<li class = "listElements">
+      str += `<li class = "listElement">
           <label class="checkbox" for="">
             <input class = "check" type="checkbox" data-index="${index}">
             <span>${item.content}</span>
@@ -36,7 +36,7 @@ function renderData() {
 
 //footer
 function countUnfinished() {
-  listFooter.innerHTML = `<p>${unfinished}個待完成項目</p> 
+  listFooter.innerHTML = `<p>${unfinished} 個待完成項目</p> 
 <a href="#" class="clearAll">清除已完成項目</a>`;
 }
 
@@ -49,13 +49,12 @@ listFooter.addEventListener("click", function (e) {
       }
     });
   }
-  renderData();
+  renderData(data);
 });
 
 //新增待辦事項
 btnAdd.addEventListener("click", function (e) {
   if (txt.value !== "") {
-    //注意obj={}的位置
     let obj = {};
     obj.content = txt.value;
     obj.check = "unchecked";
@@ -64,7 +63,7 @@ btnAdd.addEventListener("click", function (e) {
       item.classList.remove("active");
     });
     tabList[0].classList.add("active");
-    renderData();
+    renderData(data);
     countUnfinished();
   }
 });
@@ -74,7 +73,7 @@ list.addEventListener("click", function (e) {
     let index = e.target.getAttribute("data-index");
     data.splice(index, 1);
     alert("代辦事項已刪除");
-    renderData();
+    renderData(data);
     countUnfinished();
   }
 });
@@ -87,57 +86,13 @@ tab.addEventListener("click", function (e) {
   });
   if (e.target.matches(".all")) {
     e.target.classList.add("active");
-    let str = "";
-    data.forEach(function (item, index) {
-      if (item.check === "checked") {
-        str += `<li class = "listElements">
-          <label class="checkbox" for="">
-            <input class = "check" type="checkbox" data-index="${index}" checked>
-            <span>${item.content}</span>
-          </label>
-          <a href="#" class="material-symbols-outlined"> delete </a>
-          </li><hr/>`;
-      } else if (item.check === "unchecked") {
-        str += `<li class = "listElements">
-          <label class="checkbox" for="">
-            <input class = "check" type="checkbox" data-index="${index}">
-            <span>${item.content}</span>
-          </label>
-          <a href="#" class="material-symbols-outlined"> delete </a>
-          </li><hr/>`;
-      }
-    });
-    list.innerHTML = str;
+    renderData(data);
   } else if (e.target.matches(".unfinished")) {
     e.target.classList.add("active");
-    let str = "";
-    data.forEach(function (item, index) {
-      if (item.check === "unchecked") {
-        str += `<li class = "listElements">
-          <label class="checkbox" for="">
-            <input class = "check" type="checkbox" data-index="${index}">
-            <span>${item.content}</span>
-          </label>
-          <a href="#" class="material-symbols-outlined"> delete </a>
-          </li><hr/>`;
-      }
-    });
-    list.innerHTML = str;
+    renderData(data.filter((item) => item.check === "unchecked"));
   } else if (e.target.matches(".finished")) {
     e.target.classList.add("active");
-    let str = "";
-    data.forEach(function (item, index) {
-      if (item.check === "checked") {
-        str += `<li class = "listElements">
-          <label class="checkbox" for="">
-            <input class = "check" type="checkbox" data-index="${index}" checked>
-            <span>${item.content}</span>
-          </label>
-          <a href="#" class="material-symbols-outlined"> delete </a>
-          </li><hr/>`;
-      }
-    });
-    list.innerHTML = str;
+    renderData(data.filter((item) => item.check === "checked"));
   }
 });
 
@@ -145,11 +100,16 @@ tab.addEventListener("click", function (e) {
 list.addEventListener("click", function (e) {
   if (e.target.matches(".check")) {
     const index = e.target.getAttribute("data-index");
-    data[index].check = "checked";
-    let span = e.target.nextSibling.nextSibling;
-    span.classList.add("active");
-    unfinished--;
+    const span = e.target.nextSibling.nextSibling;
+    if (data[index].check === "unchecked") {
+      data[index].check = "checked";
+      span.classList.add("deleted");
+      unfinished--;
+    } else if (data[index].check === "checked") {
+      data[index].check = "unchecked";
+      span.classList.remove("deleted");
+      unfinished++;
+    }
   }
-
   countUnfinished();
 });
