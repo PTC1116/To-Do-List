@@ -43,7 +43,7 @@ function countUnfinished() {
 //清除已完成項目
 listFooter.addEventListener("click", function (e) {
   if (e.target.matches(".clearAll")) {
-    data.forEach(function (item, index, array) {
+    data.forEach((item, index, array) => {
       if (item.check === "checked") {
         array.splice(index, 1);
       }
@@ -53,23 +53,21 @@ listFooter.addEventListener("click", function (e) {
 });
 
 //新增待辦事項
-btnAdd.addEventListener("click", function (e) {
+btnAdd.addEventListener("click", (e) => {
   if (txt.value !== "") {
     let obj = {};
     obj.content = txt.value;
     obj.check = "unchecked";
     data.push(obj);
-    tabList.forEach((item) => {
-      item.classList.remove("active");
-    });
+    tabList.forEach((item) => item.classList.remove("active"));
     tabList[0].classList.add("active");
     renderData(data);
     countUnfinished();
   }
 });
 //刪除待辦事項
-list.addEventListener("click", function (e) {
-  if (e.target.getAttribute("class") === "delete") {
+list.addEventListener("click", (e) => {
+  if (e.target.getAttribute("class") === "material-symbols-outlined") {
     let index = e.target.getAttribute("data-index");
     data.splice(index, 1);
     alert("代辦事項已刪除");
@@ -80,10 +78,8 @@ list.addEventListener("click", function (e) {
 
 //sort：全部/ 待完成/ 已完成
 const tabList = document.querySelectorAll(".tab li");
-tab.addEventListener("click", function (e) {
-  tabList.forEach((item) => {
-    item.classList.remove("active");
-  });
+tab.addEventListener("click", (e) => {
+  tabList.forEach((item) => item.classList.remove("active"));
   if (e.target.matches(".all")) {
     e.target.classList.add("active");
     renderData(data);
@@ -97,11 +93,10 @@ tab.addEventListener("click", function (e) {
 });
 
 //監聽check
-list.addEventListener("click", function (e) {
+list.addEventListener("click", (e) => {
   if (e.target.matches(".check")) {
     const index = e.target.getAttribute("data-index");
     const span = e.target.nextSibling.nextSibling;
-
     if (data[index].check === "unchecked") {
       data[index].check = "checked";
       span.classList.add("deleted");
